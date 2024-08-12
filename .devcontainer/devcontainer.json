@@ -1,14 +1,20 @@
 {
-    "build": { "dockerfile": "dockerfile" },
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
     "hostRequirements": {
         "cpus": 4
     },
     "customizations": {
       "codespaces": {
         "openFiles": [
-          "src/main.tsx"
+          "src/index.js"
         ]
       }
+    },
+    "waitFor": "onCreateCommand",
+    "updateContentCommand": "pnpm install",
+    "postCreateCommand": "",
+    "postAttachCommand": {
+        "server": "pnpm dev"
     },
     "portsAttributes": {
       "3000": {
@@ -16,5 +22,8 @@
         "onAutoForward": "openPreview"
       }
     },
-    "forwardPorts": [3000]
+    "forwardPorts": [3000],
+    "features": {
+        "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
+    }
 }
